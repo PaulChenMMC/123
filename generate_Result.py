@@ -3,7 +3,7 @@ import pandas as pd
 
 
 class Analysis:
-    def __init__(self, Data_arr, StandPercentage=0.85, SitPercentage=1.8, StandK=0.5, SitK=0.8):
+    def __init__(self, Data_arr, StandPercentage=0.85, SitPercentage=1.8, StandK=0.5, SitK=0.7):
         self.Data_arr = list(Data_arr)
         self.StandPercentage = StandPercentage
         self.SitPercentage = SitPercentage
