@@ -176,7 +176,7 @@ if __name__ == '__main__':
     #要使用的列標題
     Data_Arr = df['y7']
     #參數設定
-    analysis = Analysis(Data_arr=Data_Arr, StandPercentage=0.80, SitPercentage=1.8, StandK=0.6, SitK=0.8)
+    analysis = Analysis(Data_arr=Data_Arr, StandPercentage=0.7, SitPercentage=1.8, StandK=0.75, SitK=0.8)
     analysis.analysis_data()
     #呼叫combine_data將資料存為xlsx
     analysis.combine_data(f'Result_{filename}',analysis.Sp_Value_dict,analysis.Sp_Item_dict,analysis.Sp_Cal_dict)
