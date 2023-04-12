@@ -4,34 +4,35 @@ from scipy.signal import convolve
 def MorletWavelet(fc):
     F_RATIO = 7
     Zalpha2 = 3.3
-
+    
     sigma_f = fc / F_RATIO
     sigma_t = 1 / (2 * np.pi * sigma_f)
     A = 1 / np.sqrt(sigma_t * np.sqrt(np.pi))
     max_t = np.ceil(Zalpha2 * sigma_t)
-
+    
     t = np.arange(-max_t, max_t + 1)
-
-    v1 = 1 / (-2 * sigma_t ** 2)
+    
+    v1 = 1 / (-2 * sigma_t**2)
     v2 = 2j * np.pi * fc
     MW = A * np.exp(t * (t * v1 + v2))
-
+    
     return MW
 
 
 def tfa_morlet(td, fs, fmin, fmax, fstep):
     TFmap = np.array([])
-    for fc in np.arange(fmin, fmax + fstep, fstep):
-        MW = MorletWavelet(fc / fs)
+    for fc in np.arange(fmin, fmax+fstep, fstep):
+        MW = MorletWavelet(fc/fs)
         cr = convolve(td, MW, mode='same')
-
+        
         TFmap = np.vstack([TFmap, abs(cr)]) if TFmap.size else abs(cr)
-
+        
     return TFmap
 
 
 def coarse_grain(ts, scale):  #比較容易了解版本
     seg = int(np.floor(len(ts)/scale))
+
     ts1 = np.zeros(seg) #new time series
     for i in range(seg):
         head = i*scale 
